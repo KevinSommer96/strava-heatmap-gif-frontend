@@ -1,21 +1,12 @@
-import React, { useEffect } from 'react';
-import axios from 'axios';
-import { useAuth } from '../../context/AuthenticationProvider';
+import React from 'react';
+import { Container } from '../../common/styles';
 
 const Home = () => {
-  const { authToken, setAuthToken } = useAuth();
-
-  useEffect(() => {
-    const query = new URLSearchParams(window.location.search);
-    const code = query.get('code');
-
-    if (code) {
-      axios
-        .get('http://localhost:8000/authorised', { params: { code: code } })
-        .then((res) => setAuthToken(res.data.access_token));
-    }
-  }, [setAuthToken]);
-  return <div>{authToken ? authToken : <div>k</div>}</div>;
+  return (
+    <Container>
+      <h1>Home</h1>
+    </Container>
+  );
 };
 
 export default Home;
