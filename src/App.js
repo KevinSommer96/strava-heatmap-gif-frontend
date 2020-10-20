@@ -4,6 +4,7 @@ import { AuthContext } from './context/AuthenticationProvider';
 import Home from './pages/Home';
 import Gif from './pages/Gif';
 import Auth from './pages/Auth';
+import Map from './pages/Map';
 import Navbar from './common/Navbar';
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route exact path='/' component={Home} />
           <Route exact path='/gif' component={Gif} />
           <Route path='/authorised' component={Auth} />
+          <Route path='/map' component={Map} />
         </Router>
       </AuthContext.Provider>
     </div>

@@ -28,6 +28,7 @@ const Navbar = () => (
   <NavbarContainer>
     <NavLink href='/'>Home</NavLink>
     <NavLink href='/gif'>Gif</NavLink>
+    <NavLink href='/map'>Map</NavLink>
   </NavbarContainer>
 );
 
