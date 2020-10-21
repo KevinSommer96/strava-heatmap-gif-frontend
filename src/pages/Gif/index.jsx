@@ -11,49 +11,40 @@ const CenteredHashLoader = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const Gif = () => {
-  const { authToken, setAuthToken } = useAuth();
+const Gif = (props) => {
+  const { authToken } = useAuth();
+  const coords = props.location.state.coords;
 
-  const [activities, setActivities] = useState([]);
-
-  const [gif, setGif] = useState(undefined);
+  console.log('coords', props.location.state.coords);
 
   const [gifData, setGifData] = useState(undefined);
 
-  useEffect(() => {
-    if (!authToken) {
+  const getGif = (access_token, coords) => {
+    const longitudes = coords.map((el) => el[0]);
+    const latitudes = coords.map((el) => el[1]);
+
+    if (coords.length !== 0) {
       axios
-        .get('http://localhost:8000/')
-        .then((res) => window.location.replace(res.data.url));
+        .get(`${process.env.REACT_APP_API_URL}/gif/`, {
+          params: {
+            access_token,
+            min_lon: Math.min(...longitudes),
+            max_lat: Math.max(...latitudes),
+            max_lon: Math.max(...longitudes),
+            min_lat: Math.min(...latitudes),
+          },
+        })
+        .then((res) => setGifData(res.data.gif));
     }
-  }, [authToken, setAuthToken]);
+  };
 
   useEffect(() => {
-    if (authToken && activities.length === 0) {
-      axios
-        .get('http://localhost:8000/activities/', {
-          params: { access_token: authToken },
-        })
-        .then((res) => setActivities(res.data.activities));
-    }
-  }, [activities, authToken]);
+    getGif(authToken, coords);
+  }, [authToken, coords]);
 
-  useEffect(() => {
-    if (authToken && activities.length !== 0) {
-      axios
-        .get('http://localhost:8000/gif/', {
-          params: { access_token: authToken },
-        })
-        .then((res) => {
-          console.log('done', res);
-          setGifData(res.data.gif);
-          setGif('gif');
-        });
-    }
-  }, [authToken, activities]);
   return (
     <div>
-      {gif ? (
+      {gifData ? (
         <img src={'data:image/gif;base64,' + gifData} alt='ok' />
       ) : (
         <CenteredHashLoader>

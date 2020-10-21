@@ -4,10 +4,8 @@ import styled from 'styled-components';
 const NavbarContainer = styled.div`
   top: 0;
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
   background-color: rgba(0, 0, 0, 0.5);
   height: 6vh;
 `;
@@ -27,7 +25,6 @@ const NavLink = styled.a`
 const Navbar = () => (
   <NavbarContainer>
     <NavLink href='/'>Home</NavLink>
-    <NavLink href='/gif'>Gif</NavLink>
     <NavLink href='/map'>Map</NavLink>
   </NavbarContainer>
 );

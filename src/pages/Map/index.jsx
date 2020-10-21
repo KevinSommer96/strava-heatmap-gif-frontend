@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import mapboxgl, { Map } from 'mapbox-gl';
+import mapboxgl from 'mapbox-gl';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import DrawRectangle from 'mapbox-gl-draw-rectangle-mode';
-import mapboxGLDrawRectangleDrag from 'mapboxgl-draw-rectangle-drag';
+import { Redirect } from 'react-router-dom';
 
 const styles = {
   width: '80vw',
@@ -13,11 +13,9 @@ const styles = {
 
 const MapboxGLMap = () => {
   const [map, setMap] = useState(null);
-  const [draw, setDraw] = useState({});
+  const [coords, setCoords] = useState([]);
   const mapContainer = useRef(null);
-
-  // console.log(MapboxDraw);
-  // console.log(new MapboxDraw());
+  const [gif, setGif] = useState(false);
 
   useEffect(() => {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
@@ -29,35 +27,18 @@ const MapboxGLMap = () => {
         zoom: 7,
       });
 
-      const modes = MapboxDraw.modes;
-      modes.draw_rectangle = DrawRectangle;
-
-      const draw = new MapboxDraw({
+      var draw = new MapboxDraw({
         modes: {
           ...MapboxDraw.modes,
-          DRAW_RECTANGLE: mapboxGLDrawRectangleDrag,
+          DRAW_RECTANGLE: DrawRectangle,
         },
       });
 
-      console.log('draw', draw);
-
-      // setDraw(
-      //   new MapboxDraw({
-      //     controls: { point: true },
-      //     displayControlsDefault: false,
-      //     modes: {
-      //       ...MapboxDraw.modes,
-      //       DRAW_RECTANGLE: mapboxGLDrawRectangleDrag,
-      //     },
-      //   })
-      // );
-
-      // draw.changeMode('DRAW_RECTANGLE');
       map.addControl(draw, 'top-left');
+      draw.changeMode('DRAW_RECTANGLE');
 
-      draw.changeMode('draw_rectangle');
       map.on('draw.create', function (feature) {
-        console.log(feature);
+        setCoords(feature.features[0].geometry.coordinates[0]);
       });
 
       map.on('load', () => {
@@ -73,15 +54,33 @@ const MapboxGLMap = () => {
     <>
       <button
         onClick={() => {
-          const draw_copy = draw;
-          // draw_copy.changeMode('DRAW_RECTANGLE');
-          // console.log(draw);
+          setMap(null);
+          setCoords([]);
         }}
-        className='enable'
       >
-        Enable control
+        reset
       </button>
-      <div ref={(el) => (mapContainer.current = el)} style={styles}></div>
+      <button
+        onClick={() => {
+          if (coords.length !== 0) {
+            setGif(true);
+          }
+        }}
+      >
+        send
+      </button>
+
+      {gif ? (
+        <Redirect
+          to={{
+            pathname: '/gif',
+            state: { coords: coords },
+          }}
+        />
+      ) : (
+        <div>nothing selected</div>
+      )}
+      <div ref={(el) => (mapContainer.current = el)} style={styles} />
     </>
   );
 };

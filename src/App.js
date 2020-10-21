@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { AuthContext } from './context/AuthenticationProvider';
 import Home from './pages/Home';
+import Code from './pages/Code';
 import Gif from './pages/Gif';
 import Auth from './pages/Auth';
 import Map from './pages/Map';
 import Navbar from './common/Navbar';
+import PrivateRoute from './common/PrivateRoute';
 
 const App = () => {
   const existingToken = JSON.parse(localStorage.getItem('token'));
@@ -22,9 +24,11 @@ const App = () => {
       <AuthContext.Provider value={{ authToken, setAuthToken: setToken }}>
         <Router>
           <Route exact path='/' component={Home} />
-          <Route exact path='/gif' component={Gif} />
+          <Route path='/code' component={Code} />
           <Route path='/authorised' component={Auth} />
-          <Route path='/map' component={Map} />
+          <PrivateRoute path='/map' component={Map} />
+
+          <PrivateRoute path='/gif' component={Gif} />
         </Router>
       </AuthContext.Provider>
     </div>

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthenticationProvider';
 import { Redirect } from 'react-router-dom';
+import { CenteredHashLoader } from '../../common/styles';
+import HashLoader from 'react-spinners/HashLoader';
 
 const Auth = () => {
   const { authToken, setAuthToken } = useAuth();
@@ -12,12 +14,18 @@ const Auth = () => {
 
     if (code) {
       axios
-        .get('http://localhost:8000/authorised', { params: { code: code } })
+        .get(`${process.env.REACT_APP_API_URL}/authorised/`, {
+          params: { code: code },
+        })
         .then((res) => setAuthToken(res.data.access_token));
     }
   }, [setAuthToken]);
-  if (authToken) return <Redirect to='/gif' />;
-  return <div>auth page not authorised yet</div>;
+  if (authToken) return <Redirect to='/map' />;
+  return (
+    <CenteredHashLoader>
+      <HashLoader size={150} />
+    </CenteredHashLoader>
+  );
 };
 
 export default Auth;

@@ -9,7 +9,7 @@ function PrivateRoute({ component: Component, ...rest }) {
     <Route
       {...rest}
       render={(props) =>
-        authToken ? <Component {...props} /> : <Redirect to="/test" />
+        authToken ? <Component {...props} /> : <Redirect to='/code' />
       }
     />
   );
