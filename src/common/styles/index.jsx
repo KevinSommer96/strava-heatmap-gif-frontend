@@ -5,6 +5,7 @@ export const Container = styled.div`
   width: 70%;
   margin: 0 auto;
   background-color: transparent;
+  color: ${(props) => props.theme.colorVermillion};
 `;
 
 export const CenteredHashLoader = styled.div`
@@ -12,4 +13,9 @@ export const CenteredHashLoader = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+export const Heading = styled.h1`
+  margin: 0 auto;
+  padding: 0.5em 0;
 `;

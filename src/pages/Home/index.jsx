@@ -1,10 +1,10 @@
 import React from 'react';
-import { Container } from '../../common/styles';
+import { Container, Heading } from '../../common/styles';
 
 const Home = () => {
   return (
     <Container>
-      <h1>Home</h1>
+      <Heading>Home</Heading>
     </Container>
   );
 };
