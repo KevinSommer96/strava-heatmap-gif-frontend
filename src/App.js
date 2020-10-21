@@ -12,14 +12,10 @@ import PrivateRoute from './common/PrivateRoute';
 import theme from './theme';
 
 const Background = styled.div`
-  color: white;
+  color: ${(props) => props.theme.colorMint};
   background: ${(props) => props.theme.colorBackground};
-  height: 100vh;
-  /* background: linear-gradient(
-    90deg,
-    rgba(64, 52, 52, 1) 0%,
-    rgba(21, 91, 67, 1) 100%
-  ); */
+  background-repeat: repeat;
+  min-height: 100vh;
 `;
 
 const App = () => {

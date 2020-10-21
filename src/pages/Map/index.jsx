@@ -7,13 +7,13 @@ import { Redirect } from 'react-router-dom';
 import { useFormik } from 'formik';
 import styled from 'styled-components';
 import * as turf from '@turf/turf';
-import { Container, Heading } from '../../common/styles';
+import { Container, Heading, Button } from '../../common/styles';
 
 const FormBox = styled.form`
   display: flex;
   flex-direction: column;
   width: 30%;
-  margin: 0 auto;
+  margin: 1em auto;
   font-size: 150%;
 `;
 
@@ -51,6 +51,7 @@ const coordsToRatio = (coords) => {
 
 const MapboxGLMap = () => {
   const [map, setMap] = useState(null);
+  const [pos, setPos] = useState([7.36, 50.21]);
   const [coords, setCoords] = useState([]);
   const mapContainer = useRef(null);
   const [gif, setGif] = useState(false);
@@ -68,14 +69,17 @@ const MapboxGLMap = () => {
       }
     },
   });
-
+  navigator.geolocation.getCurrentPosition((position) => {
+    setPos([position.coords.longitude, position.coords.latitude]);
+  });
   useEffect(() => {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
+
     const initializeMap = ({ setMap, mapContainer }) => {
       const map = new mapboxgl.Map({
         container: mapContainer.current,
         style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-        center: [6.1, 50.8],
+        center: pos,
         zoom: 10,
       });
 
@@ -103,7 +107,7 @@ const MapboxGLMap = () => {
     };
 
     if (!map) initializeMap({ setMap, mapContainer });
-  }, [map]);
+  }, [map, pos]);
 
   return (
     <>
@@ -122,7 +126,7 @@ const MapboxGLMap = () => {
         />
       ) : (
         <Container>
-          <Heading>Select a Rectangle</Heading>
+          <Heading>Select a Region</Heading>
         </Container>
       )}
       <div ref={(el) => (mapContainer.current = el)} style={styles} />
@@ -162,15 +166,16 @@ const MapboxGLMap = () => {
           />
         </InputBox>
         <InputBox>
-          <button
+          <Button
             onClick={() => {
               setMap(null);
               setCoords([]);
+              formik.resetForm();
             }}
           >
-            Reset Map
-          </button>
-          <button type='submit'>Submit</button>
+            Reset
+          </Button>
+          <Button type='submit'>Submit</Button>
         </InputBox>
       </FormBox>
     </>
