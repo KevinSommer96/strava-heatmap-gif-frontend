@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
   width: 70%;
   margin: 0 auto;
   background-color: transparent;
-  color: ${(props) => props.theme.colorMint};
+  color: ${(props) => props.theme.colorHighlight};
 `;
 
 export const CenteredHashLoader = styled.div`
@@ -26,9 +26,9 @@ export const Button = styled.button`
   height: 1.5em;
   font-weight: 700;
   background-color: ${(props) => props.theme.colorBackground};
-  border: 1px solid ${(props) => props.theme.colorMint};
+  border: 1px solid ${(props) => props.theme.colorHighlight};
   border-radius: 0.2em;
-  color: ${(props) => props.theme.colorMint};
+  color: ${(props) => props.theme.colorHighlight};
   text-align: center;
   text-decoration: none;
   box-shadow: none;

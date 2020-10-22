@@ -10,7 +10,7 @@ const NavbarContainer = styled.div`
 `;
 
 const NavLink = styled.a`
-  color: ${(props) => props.theme.colorMint};
+  color: ${(props) => props.theme.colorHighlight};
   text-decoration: none;
   font-weight: 700;
   height: 6vh;

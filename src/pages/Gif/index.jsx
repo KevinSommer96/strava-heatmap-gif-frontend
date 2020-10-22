@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useAuth } from '../../context/AuthenticationProvider';
-import HashLoader from 'react-spinners/HashLoader';
-import styled from 'styled-components';
-import { Container, Heading } from '../../common/styles';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useAuth } from "../../context/AuthenticationProvider";
+import HashLoader from "react-spinners/HashLoader";
+import styled from "styled-components";
+import { Container, Heading } from "../../common/styles";
 
 const CenteredHashLoader = styled.div`
   position: fixed;
@@ -15,12 +15,12 @@ const CenteredHashLoader = styled.div`
 const GifImg = styled.img`
   display: block;
   margin: 0 auto;
-  border: 1px solid ${(props) => props.theme.colorMint};
+  border: 1px solid ${(props) => props.theme.colorHighlight};
 `;
 
 const DownloadButton = styled.a`
   margin: 0 auto;
-  color: ${(props) => props.theme.colorMint};
+  color: ${(props) => props.theme.colorHighlight};
   font-size: 150%;
   text-decoration: none;
 
@@ -34,7 +34,7 @@ const Gif = (props) => {
   const { authToken } = useAuth();
   const coords = props.location.state.coords;
 
-  console.log('coords', props.location.state.coords);
+  console.log("coords", props.location.state.coords);
 
   const [gifData, setGifData] = useState(undefined);
 
@@ -68,9 +68,9 @@ const Gif = (props) => {
           <Container>
             <Heading>Result</Heading>
           </Container>
-          <GifImg src={'data:image/gif;base64,' + gifData} alt='ok' />
-          <Container style={{ padding: '1.5em 0' }}>
-            <DownloadButton href={'data:image/gif;base64,' + gifData} download>
+          <GifImg src={"data:image/gif;base64," + gifData} alt="ok" />
+          <Container style={{ padding: "1.5em 0" }}>
+            <DownloadButton href={"data:image/gif;base64," + gifData} download>
               Download
             </DownloadButton>
           </Container>
