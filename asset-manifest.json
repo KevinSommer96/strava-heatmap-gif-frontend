@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/KevinSommer96/strava-heatmap-gif-frontend/static/css/main.828ff272.chunk.css",
+    "main.js": "/KevinSommer96/strava-heatmap-gif-frontend/static/js/main.4b7a8850.chunk.js",
+    "main.js.map": "/KevinSommer96/strava-heatmap-gif-frontend/static/js/main.4b7a8850.chunk.js.map",
+    "runtime-main.js": "/KevinSommer96/strava-heatmap-gif-frontend/static/js/runtime-main.ba4e167a.js",
+    "runtime-main.js.map": "/KevinSommer96/strava-heatmap-gif-frontend/static/js/runtime-main.ba4e167a.js.map",
+    "static/css/2.0a5b19c0.chunk.css": "/KevinSommer96/strava-heatmap-gif-frontend/static/css/2.0a5b19c0.chunk.css",
+    "static/js/2.5384f7eb.chunk.js": "/KevinSommer96/strava-heatmap-gif-frontend/static/js/2.5384f7eb.chunk.js",
+    "static/js/2.5384f7eb.chunk.js.map": "/KevinSommer96/strava-heatmap-gif-frontend/static/js/2.5384f7eb.chunk.js.map",
+    "index.html": "/KevinSommer96/strava-heatmap-gif-frontend/index.html",
+    "precache-manifest.15bd97b83084ff3cf3a17a5d20991de7.js": "/KevinSommer96/strava-heatmap-gif-frontend/precache-manifest.15bd97b83084ff3cf3a17a5d20991de7.js",
+    "service-worker.js": "/KevinSommer96/strava-heatmap-gif-frontend/service-worker.js",
+    "static/css/2.0a5b19c0.chunk.css.map": "/KevinSommer96/strava-heatmap-gif-frontend/static/css/2.0a5b19c0.chunk.css.map",
+    "static/css/main.828ff272.chunk.css.map": "/KevinSommer96/strava-heatmap-gif-frontend/static/css/main.828ff272.chunk.css.map",
+    "static/js/2.5384f7eb.chunk.js.LICENSE.txt": "/KevinSommer96/strava-heatmap-gif-frontend/static/js/2.5384f7eb.chunk.js.LICENSE.txt",
+    "static/media/gif.png": "/KevinSommer96/strava-heatmap-gif-frontend/static/media/gif.207e1bd0.png",
+    "static/media/map.png": "/KevinSommer96/strava-heatmap-gif-frontend/static/media/map.f05de17a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ba4e167a.js",
+    "static/css/2.0a5b19c0.chunk.css",
+    "static/js/2.5384f7eb.chunk.js",
+    "static/css/main.828ff272.chunk.css",
+    "static/js/main.4b7a8850.chunk.js"
+  ]
+}
