@@ -5,16 +5,17 @@ import HashLoader from 'react-spinners/HashLoader';
 import { useAuth } from '../../context/AuthenticationProvider';
 
 const Code = () => {
-  const { authToken, setAuthToken } = useAuth();
+  const { authToken, setAuthToken,  setExpiresAt} = useAuth();
   useEffect(() => {
     if (!authToken) {
       axios
         .get(`${process.env.REACT_APP_API_URL}`)
         .then((res) => window.location.replace(res.data.url));
     } else {
-      setAuthToken(null);
+      setAuthToken(null); 
+      setExpiresAt(null);
     }
-  }, [authToken, setAuthToken]);
+  }, [authToken, setAuthToken, setExpiresAt]);
 
   return (
     <CenteredHashLoader>

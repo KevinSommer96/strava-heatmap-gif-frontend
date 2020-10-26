@@ -6,7 +6,7 @@ import { CenteredHashLoader } from '../../common/styles';
 import HashLoader from 'react-spinners/HashLoader';
 
 const Auth = () => {
-  const { authToken, setAuthToken } = useAuth();
+  const { authToken, setAuthToken, setExpiresAt } = useAuth();
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -17,9 +17,12 @@ const Auth = () => {
         .get(`${process.env.REACT_APP_API_URL}/authorised/`, {
           params: { code: code },
         })
-        .then((res) => setAuthToken(res.data.access_token));
+        .then((res) => {
+          setAuthToken(res.data.access_token); 
+          setExpiresAt(res.data.expires_at);}
+          );
     }
-  }, [setAuthToken]);
+  }, [setAuthToken, setExpiresAt]);
   if (authToken) return <Redirect to='/map' />;
   return (
     <CenteredHashLoader>
